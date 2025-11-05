@@ -9,7 +9,7 @@ export function App() {
   return (
     <>
       <Container>
-        <Logo>Logo</Logo>
+        <Logo/>
       </Container>
       <Container>
         <Heading>Form</Heading>
