@@ -1,20 +1,24 @@
 .menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menuItems {
-    display: flex;
-    gap: 2rem;
-    
+  display: flex;
+  gap: 2rem;
 }
 
 .menuItems svg {
-    color: var(--gray-900);
-    height: 3.7rem;
-    width: 3.7rem;
-    background-color: var(--primary);
-    border-radius: 0.4rem;
-    background-size: 1rem;
+  color: var(--gray-900);
+  height: 4.5rem;
+  width: 4.5rem;
+  background-color: var(--primary);
+  border-radius: 0.8rem;
+  padding: 1rem;
+}
+
+.link:hover {
+  filter: brightness(70%);
+  transition: all 0.2s;
 }

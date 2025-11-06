@@ -5,16 +5,16 @@ export function Menu() {
   return (
     <div className={styles.menu}>
       <nav className={styles.menuItems}>
-        <a href="#">
+        <a className={styles.link} href="#">
           <House />
         </a>
-        <a href="#">
+        <a className={styles.link} href="#">
           <History />
         </a>
-        <a href="#">
+        <a className={styles.link} href="#">
           <Settings />
         </a>
-        <a href="#">
+        <a className={styles.link} href="#">
           <Sun />
         </a>
       </nav>
