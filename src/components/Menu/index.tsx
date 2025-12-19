@@ -5,6 +5,7 @@ import { House, History, Settings, SunIcon, MoonIcon } from "lucide-react";
 type AvaliableThemes = "dark" | "light";
 
 export function Menu() {
+  
   const [theme, setTheme] = useState<AvaliableThemes>(() => {
     const StorageTheme =
       (localStorage.getItem("theme") as AvaliableThemes) || "dark";
