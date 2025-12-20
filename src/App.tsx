@@ -2,6 +2,7 @@ import { Home } from "../pages/Home";
 import "./styles/global.css";
 import "./styles/theme.css";
 import type { StateTaskModel } from "../models/StateTaskModel";
+import { useState } from "react";
 
 /*
   export type StateTaskModel = {
@@ -32,5 +33,7 @@ const initialState: StateTaskModel = {
 };
 
 export function App() {
-  return <Home />;
+  const [state, setState] = useState(initialState);
+
+  return <Home state={state} setState={setState}/>;
 }
