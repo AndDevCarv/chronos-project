@@ -2,22 +2,16 @@ import { Container } from "../../src/components/Container";
 import { MainTemplate } from "../../src/Templates/MainTemplate";
 import { CountDown } from "../../src/components/CountDown";
 import { MainForm } from "../../src/components/MainForm";
-import type { StateTaskModel } from "../../models/StateTaskModel";
 
-export type HomeProps = {
-  state: StateTaskModel;
-  setState: React.Dispatch<React.SetStateAction<StateTaskModel>>;
-};
-
-export function Home(props: HomeProps) {
+export function Home() {
   return (
     <>
       <MainTemplate>
         <Container>
-          <CountDown {...props} />
+          <CountDown />
         </Container>
         <Container>
-          <MainForm {...props} />
+          <MainForm />
         </Container>
       </MainTemplate>
     </>

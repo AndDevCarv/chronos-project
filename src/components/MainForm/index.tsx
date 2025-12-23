@@ -2,12 +2,10 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycle } from "../Cycles/Cycle";
 import { DefaultButton } from "../DeafultButton";
 import { DefaultInput } from "../DefaultInput";
-import type { HomeProps } from "../../../pages/Home";
 
-export function MainForm({ state }: HomeProps) {
+export function MainForm() {
   return (
     <>
-      {" "}
       <form className="form">
         <div className="formRow">
           <DefaultInput
@@ -18,7 +16,7 @@ export function MainForm({ state }: HomeProps) {
           />
         </div>
         <div className="formRow">
-          <p>O próximo descanso é em {state.config.longBreak}min</p>
+          <p>O próximo descanso é em 25min</p>
         </div>
         <div className="formRow">
           <Cycle />
