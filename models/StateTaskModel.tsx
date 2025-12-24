@@ -1,6 +1,5 @@
 import type { TaskModel } from "./TaskModel";
-import { createContext } from "react";
-
+import { createContext, useContext, useState } from "react";
 
 export type StateTaskModel = {
   tasks: TaskModel[];
@@ -18,7 +17,7 @@ export type StateTaskModel = {
 const initialState: StateTaskModel = {
   tasks: [],
   secondsRemaining: 0,
-  formatedSecondsRemaining: "00:00",
+  formatedSecondsRemaining: "01:00",
   activeTask: null,
   currentCycle: 0,
   config: {
@@ -45,9 +44,15 @@ type TextContextProviderType = {
 };
 
 export function TextContextProvider({ children }: TextContextProviderType) {
+  const [state, setState] = useState(initialState);
+
   return (
-    <TaskContext.Provider value={initialContextValue}>
+    <TaskContext.Provider value={{ state, setState }}>
       {children}
     </TaskContext.Provider>
   );
+}
+
+export function useTaskContext() {
+  return useContext(TaskContext);
 }
