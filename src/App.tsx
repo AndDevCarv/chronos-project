@@ -1,5 +1,6 @@
 import { Home } from "../pages/Home";
-import { TextContextProvider } from "../models/StateTaskModel";
+import { TextContextProvider } from "./Contexts/TaskContext/TaskProvider";
+
 import "./styles/global.css";
 import "./styles/theme.css";
 
