@@ -63,6 +63,7 @@ export function MainForm() {
         tasks: prevstate.tasks.map((task) => {
           if (prevstate.activeTask && prevstate.activeTask.id == task.id) {
             return { ...task, interruptDate: Date.now() };
+            
           }
           return task;
         }),
