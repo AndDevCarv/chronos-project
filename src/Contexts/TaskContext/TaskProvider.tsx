@@ -9,22 +9,46 @@ type TextContextProviderType = {
 export function TextContextProvider({ children }: TextContextProviderType) {
   const [state, setState] = useState(initialState);
 
-  
+  type actionType = {
+    type: string;
+    payload?: number;
+  };
 
-  const [numero, dispatch] = useReducer((state, action) => { // dispatch: (action: any) => void estrutura do dispatch, estaremos exercitanto o valor de action
-    switch (action) {
-      case "increment":
-        return state + 1;
-      case "decrement":
-        return state - 1;
-      case "reset":
-        return 0;
-      default:
-        break;
-    }
-    console.log(state, action);
-    return state;
-  }, 0);
+  const [myState, dispatch] = useReducer(
+    (state, action: actionType) => {
+      // dispatch: (action: any) => void estrutura do dispatch, estaremos exercitanto o valor de action
+
+      switch (action.type) {
+        case "increment": {
+          if (!action.payload) return state;
+          return {
+            ...state,
+            secondsRemaining: state.secondsRemaining + action.payload,
+          };
+        }
+
+        case "decrement": {
+          if (!action.payload) return state;
+
+          return {
+            ...state,
+            secondsRemaining: state.secondsRemaining - action.payload,
+          };
+        }
+
+        case "reset": {
+          if (action.payload) return state;
+
+          return {
+            secondsRemaining: 0,
+          };
+        }
+      }
+
+      return state;
+    },
+    { secondsRemaining: 0 }
+  );
 
   // useEffect(() => {
   //   console.log(state);
@@ -32,16 +56,14 @@ export function TextContextProvider({ children }: TextContextProviderType) {
 
   return (
     <TaskContext.Provider value={{ state, setState }}>
-      <h1>o numero é: {numero}</h1>
-      <button onClick={() => dispatch("increment")}>increment</button>
-      <button onClick={() => dispatch("decrement")}>decrement</button>
-      <button
-        onClick={() => {
-          dispatch("reset");
-        }}
-      >
-        reset
+      <h1>o numero é: {JSON.stringify(myState)}</h1>
+      <button onClick={() => dispatch({ type: "increment", payload: 10 })}>
+        increment
       </button>
+      <button onClick={() => dispatch({ type: "decrement", payload: 10 })}>
+        decrement
+      </button>
+      <button onClick={() => dispatch({ type: "reset" })}>reset</button>
     </TaskContext.Provider>
   );
 }
