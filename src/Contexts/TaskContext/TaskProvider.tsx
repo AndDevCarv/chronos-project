@@ -16,7 +16,7 @@ export function TextContextProvider({ children }: TextContextProviderType) {
 
   const [myState, dispatch] = useReducer(
     (state, action: actionType) => {
-      // dispatch: (action: any) => void estrutura do dispatch, estaremos exercitanto o valor de action
+      // dispatch: (action: any) => void estrutura do dispatch, estaremos exercitanto o valor de action.
 
       switch (action.type) {
         case "increment": {
