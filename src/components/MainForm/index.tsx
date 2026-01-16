@@ -8,6 +8,7 @@ import { useTaskContext } from "../../Contexts/TaskContext/UseTaskContext";
 import { getNextCycle } from "../../../Util/getNextCycle";
 import { getNextCycleType } from "../../../Util/getNextCycleType";
 import { TaskActionTypes } from "../../Contexts/TaskContext/TaskActions";
+import { Tips } from "../Tips";
 
 export function MainForm() {
   const taskInput = useRef<HTMLInputElement>(null); //o useRef é muito usado para acessar diretamente elementos do DOM ou guardar valores que não precisam disparar atualização de tela. Diferente do useState que sempre fica atualizando a cada render.
@@ -58,7 +59,7 @@ export function MainForm() {
           />
         </div>
         <div className="formRow">
-          <p>O próximo descanso é em 25min</p>
+          <Tips />
         </div>
 
         {state.currentCycle > 0 && ( //Se state.currentCycle > 0, renderiza a <div> com <Cycle />. Caso contrário, não renderiza nada
