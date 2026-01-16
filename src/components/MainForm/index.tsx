@@ -7,11 +7,11 @@ import type { TaskModel } from "../../../models/TaskModel";
 import { useTaskContext } from "../../Contexts/TaskContext/UseTaskContext";
 import { getNextCycle } from "../../../Util/getNextCycle";
 import { getNextCycleType } from "../../../Util/getNextCycleType";
-import { formatedSecondsToMinutes } from "../../../Util/formatedSecondsToMinutes";
+import { TaskActionTypes } from "../../Contexts/TaskContext/TaskActions";
 
 export function MainForm() {
   const taskInput = useRef<HTMLInputElement>(null); //o useRef é muito usado para acessar diretamente elementos do DOM ou guardar valores que não precisam disparar atualização de tela. Diferente do useState que sempre fica atualizando a cada render.
-  const { state, setState } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
 
   const nextCycle = getNextCycle(state.currentCycle);
   console.log(nextCycle);
@@ -38,39 +38,12 @@ export function MainForm() {
       type: nextCycleType,
     };
 
-    const secondsRemaining = newTask.duration * 60;
-
-    setState((prevState) => {
-      return {
-        ...prevState,
-        activeTask: newTask,
-        currentCycle: nextCycle,
-        secondsRemaining,
-        formatedSecondsRemaining: formatedSecondsToMinutes(secondsRemaining),
-        tasks: [...prevState.tasks, newTask],
-      };
-    });
+    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
   function handlerInterruptTask() {
-    setState((prevstate) => {
-      return {
-        ...prevstate,
-        activeTask: null,
-        currentCycle: 0,
-        secondsRemaining: 0,
-        formatedSecondsRemaining: "00:00",
-        tasks: prevstate.tasks.map((task) => {
-          if (prevstate.activeTask && prevstate.activeTask.id == task.id) {
-            return { ...task, interruptDate: Date.now() };
-            
-          }
-          return task;
-        }),
-      };
-    });
+    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }
-
   return (
     <>
       <form onSubmit={handleCreateNewTask} className="form">
