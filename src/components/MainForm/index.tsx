@@ -9,6 +9,7 @@ import { getNextCycle } from "../../../Util/getNextCycle";
 import { getNextCycleType } from "../../../Util/getNextCycleType";
 import { TaskActionTypes } from "../../Contexts/TaskContext/TaskActions";
 import { Tips } from "../Tips";
+import { TimerWorkerManager } from "../../../Workers/TimerWorkerManager.ts";
 
 export function MainForm() {
   const taskInput = useRef<HTMLInputElement>(null); //o useRef é muito usado para acessar diretamente elementos do DOM ou guardar valores que não precisam disparar atualização de tela. Diferente do useState que sempre fica atualizando a cada render.
@@ -40,6 +41,9 @@ export function MainForm() {
     };
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+
+    const worker = TimerWorkerManager.getInstance();
+    worker.postMessage("teste");
   }
 
   function handlerInterruptTask() {
